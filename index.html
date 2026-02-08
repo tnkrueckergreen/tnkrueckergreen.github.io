@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tommy’s Capstone Project</title>
+    <style>
+        @font-face {
+            font-family: 'reMarkableSerif';
+            src: url('assets/reMarkableSerif.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'reMarkableSans';
+            src: url('assets/reMarkableSans.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #F9F7F2;
+            color: #333;
+            font-family: 'reMarkableSans', sans-serif;
+            line-height: 1.8;
+        }
+
+        h1, h2, h3 {
+            font-family: 'reMarkableSerif', serif;
+            margin-bottom: 1rem;
+        }
+
+        /* nav */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(249, 247, 242, 0.98);
+        }
+
+        .logo {
+            font-family: 'reMarkableSerif', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .nav-links { display: flex; gap: 0.5rem; }
+
+        nav button {
+            font-family: 'reMarkableSans', sans-serif;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            font-weight: 700;
+            padding: 0.7rem 1.3rem;
+            border-radius: 50px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        nav button.active, nav button:hover { background: #EBE5DA; }
+
+        /* hero */
+        .hero {
+            height: 38vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem 1rem 2.5rem;
+            border-radius: 30px;
+            background: #feaa9b;
+        }
+
+        .hero h1 {
+            color: #fff;
+            font-size: 3.2rem;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        /* layout */
+        main {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 0 1rem 4rem;
+        }
+
+        .page { display: none; }
+        .page.active { display: block; }
+
+        /* card */
+        .card {
+            background: #fff;
+            padding: 3rem;
+            margin-bottom: 2.5rem;
+            border-radius: 24px;
+            box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.05);
+        }
+
+        /* bio card flexbox layout */
+        .bio-layout {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .bio-text {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .bio-img {
+            width: 350px;
+            flex-shrink: 0;
+            align-self: stretch;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 5px solid #fff;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        /* highlight boxes */
+        .highlight {
+            padding: 2.5rem;
+            border-radius: 24px;
+            margin-bottom: 2.5rem;
+        }
+
+        .highlight .tag {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50px;
+            font-size: 0.65rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            font-family: 'reMarkableSans', sans-serif;
+        }
+
+        .highlight h3 { font-size: 1.7rem; line-height: 1.35; }
+
+        /* bio title and greeting */
+        .bio-title {
+            display: block;
+            font-size: 0.65rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #A09585;
+            margin-bottom: 0.5rem;
+            font-family: 'reMarkableSans', sans-serif;
+        }
+
+        .bio-greeting {
+            font-weight: 300;
+            font-size: 0.95rem;
+            color: #777;
+            margin-bottom: 1rem;
+        }
+
+        /* tinted box */
+        .box {
+            background: #F4F1EA;
+            padding: 2rem;
+            border-radius: 16px;
+            margin-top: 1.5rem;
+        }
+
+        .box p { margin-bottom: 1rem; }
+        .box p:last-child { margin-bottom: 0; }
+
+        /* embeds */
+        .embed {
+            width: 100%;
+            height: 550px;
+            border: none;
+            border-radius: 16px;
+            margin-top: 1.5rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .video-wrap {
+            position: relative;
+            padding-bottom: 56.25%;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .video-wrap iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+
+        img.full {
+            max-width: 100%;
+            border-radius: 16px;
+            margin-top: 1.5rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        /* link button */
+        .link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.8rem 1.6rem;
+            margin-top: 1.2rem;
+            border-radius: 50px;
+            border: 1px solid #E0DBD2;
+            background: #fff;
+            color: #333;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-decoration: none;
+            font-family: 'reMarkableSans', sans-serif;
+        }
+
+        .link-btn:hover { border-color: #8C7B6C; }
+        .link-btn img { width: 20px; height: 20px; }
+
+        /* questions */
+        .q-block { margin-bottom: 4rem; }
+        .q-block:last-child { margin-bottom: 0; }
+        .q-block h3 { font-size: 1.6rem; line-height: 1.35; margin-bottom: 1.5rem; }
+        .q-block p { margin-top: 1rem; }
+
+        footer { text-align: center; padding: 3rem; opacity: 0.5; }
+
+        /* mobile */
+        @media (max-width: 768px) {
+            .hero { height: 32vh; }
+            .hero h1 { font-size: 2rem; }
+            .card { padding: 1.8rem; }
+            .bio-layout { flex-direction: column-reverse; align-items: center; }
+            .bio-img { width: 180px; align-self: auto; aspect-ratio: 3/4; }
+            nav { flex-direction: column; gap: 0.8rem; }
+            .nav-links { flex-wrap: nowrap; }
+            nav button { padding: 0.6rem 0.9rem; letter-spacing: 1px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo" onclick="go('home')">tommy’s capstone</div>
+    <div class="nav-links">
+        <button id="btn-home" class="active" onclick="go('home')">Home</button>
+        <button id="btn-discover" onclick="go('discover')">Discover</button>
+        <button id="btn-design" onclick="go('design')">Design</button>
+        <button id="btn-deliver" onclick="go('deliver')">Deliver</button>
+    </div>
+</nav>
+
+<div class="hero">
+    <h1 id="hero-title">my project</h1>
+</div>
+
+<main>
+
+    <!-- HOME -->
+    <div id="home" class="page active">
+
+        <div class="card">
+            <div class="bio-layout">
+                <div class="bio-text">
+                    <span class="bio-title">About the Researcher</span>
+                    <h2>Tommy Kruecker-Green</h2>
+                    <p class="bio-greeting">Hi! I’m Tommy.</p>
+                    <p>As a researcher, I am interested in science, especially in areas of biology - like bioengineering and computational biology. I already have experience with bio research as club leader and active member for BioBuilder club. This past year, our group tested a variety of enzymes that can digest PET plastic. Our work continues!</p>
+                    <br>
+                    <p>I also have an interest more generally in technology and how rapidly advancing technologies, like AI, can improve health outcomes and advance drug discovery. AI is also somewhat of a black box at the moment but there have already been efforts into mechanistic interpretability that interest me.</p>
+                </div>
+                <img src="assets/profile.png" alt="Tommy" class="bio-img">
+            </div>
+        </div>
+
+        <div class="highlight" style="background: #C8B8DA;">
+            <span class="tag" style="color: #6B5285;">Essential Question</span>
+            <h3 style="color: #3E2A55;">To what extent are interpretability tools a viable way to detect and/or mitigate harmful AI behaviors?</h3>
+        </div>
+
+        <div class="highlight" style="background: #F5CEAE;">
+            <span class="tag" style="color: #A0644A;">Driving / Research Question</span>
+            <h3 style="color: #5C3625;">How does the effectiveness of feature steering in mitigating LLM bias, sycophancy, and dishonesty compare to traditional training-based alignment methods?</h3>
+        </div>
+
+        <div class="card">
+            <p>By researching new method of interpretabilities such as circuit tracing and feature analysis, I hope to learn about how the “mind” of an LLM works. What is internally activated before tokens are determined with finality? Understanding these complex mathematical decisions and activations have for a long time remained a black box to researchers. More lately, within the last two years, progress has been made. These new tools still aren’t perfect by any means and there are so many unknowns, but they are the first step to ensuring a future of transparent AI. In addition to research, I will run my own experiments with tools that allow the discovery and modification of certain “features” that activate within an LLM, and hopefully gain insights about how certain features can can be modified to better align with human values by toning down the strength of activations that relate to problematic behaviors such as covert bias and sycophancy.</p>
+        </div>
+
+        <div class="card">
+            <p>I learned that I have trouble with organizing myself. But failure is part of the solution to the problem. There are many instances looking back where failure could have been avoided had I made better choices and fostered better habits. I will use my ability to fail and recover in my own research by making a concerted effort to be organized, to set a timeline, and keep focused and on track. I will also ask for clarification when I need it and will not be afraid to ask a teacher for advice.</p>
+            <iframe class="embed" src="https://docs.google.com/document/d/11JSRDRpVCjsDTEGz0KoXUpbT0hlUNoER2GSGBpPngyg/preview"></iframe>
+            <a href="https://drive.google.com/open?id=11JSRDRpVCjsDTEGz0KoXUpbT0hlUNoER2GSGBpPngyg" target="_blank" class="link-btn">
+                <img src="https://www.gstatic.com/images/icons/material/product/1x/docs_32dp.png" alt="">Open in New Tab
+            </a>
+        </div>
+    </div>
+
+    <!-- DISCOVER -->
+    <div id="discover" class="page">
+
+        <div class="card">
+            <h2>Presearch</h2>
+            <p>This is for exploring the initial concepts and gathering foundational knowledge. It took me quite a while!</p>
+            <iframe class="embed" src="https://docs.google.com/document/d/1iahyrV_-oRpclzeigln6lTSe8qqeamCE2t4HYFo5z7g/preview"></iframe>
+            <a href="https://docs.google.com/document/d/1iahyrV_-oRpclzeigln6lTSe8qqeamCE2t4HYFo5z7g/edit?tab=t.0" target="_blank" class="link-btn">
+                <img src="https://www.gstatic.com/images/icons/material/product/1x/docs_32dp.png" alt="">Open in New Tab
+            </a>
+        </div>
+
+        <div class="card">
+            <h2>Mind Map</h2>
+            <img src="assets/mind-map.png" alt="Mind Map" class="full">
+        </div>
+    </div>
+
+    <!-- DESIGN -->
+    <div id="design" class="page">
+
+        <div class="card">
+            <h2>LEAP Map</h2>
+            <img src="assets/leap.png" alt="LEAP Map" class="full">
+        </div>
+
+        <div class="card">
+            <h2>Rough &amp; Ugly Questions</h2>
+
+            <div class="q-block">
+                <h3>How does increasing transparency and interpretability in AI models shape the future of trustworthy AI deployment?</h3>
+                <div class="box">
+                    <p><strong>Who:</strong> AI developers, safety researchers, policymakers, users</p>
+                    <p><strong>What:</strong> Bug/failure diagnosis, public trust; could diverge into new subfields in AI governance; or expose security vulnerabilities.</p>
+                    <p><strong>Where:</strong> Globally — wherever AI is deployed in critical domains (healthcare, finance, government).</p>
+                </div>
+                <p>Do more “legible” or “transparent” models translate to safety? Or could this transparency create new risk — making it easier to exploit model weaknesses?</p>
+                <p>And if both are true, how can the pros and cons be balanced? Transparent for all, or just some people?</p>
+            </div>
+
+            <div class="q-block">
+                <h3>How do emergent behaviors and “strategic deception” in AI challenge current methods of safety testing/alignment?</h3>
+                <div class="box">
+                    <p><strong>Who:</strong> AI developers, safety researchers, policymakers, users</p>
+                    <p><strong>What:</strong> Safety testing protocols; alignment training; certification standards for “aligned” models.</p>
+                    <p><strong>Where:</strong> Wherever frontier models are deployed, or wherever AI makes consequential decisions without perfect human oversight.</p>
+                </div>
+                <p>Are current safety benchmarks enough or do “situationally aware” models find ways to circumvent them? I recently read about a model that passed safety tests — but researchers realized it seemed aware it was being tested, meaning it could have been faking alignment.</p>
+                <p>What does “alignment” mean if models are rewarded for appearing aligned but secretly preserve their preferences?</p>
+                <p>How do we manage the gap between test-time performance and real-world, post-deployment behavior?</p>
+            </div>
+
+            <div class="q-block">
+                <h3>How does scaling AI models, in size and domain, change their nature and detectability of their failures?</h3>
+                <div class="box">
+                    <p><strong>Who:</strong> AI developers, safety researchers, policymakers, vulnerable individuals affected by AI harm.</p>
+                    <p><strong>What:</strong> Scaling laws (for performance and misbehavior), transparency or “microscope” tools for large models.</p>
+                    <p><strong>Where:</strong> APIs, public-facing models, closed research environments, high-stakes deployment.</p>
+                </div>
+                <p>Is anomaly detection for weird behaviors scalable or does it break under complexity? Will these techniques become obsolete as complexity increases?</p>
+                <p>Are there “phase transitions” in risk or capability that make certain safety measures obsolete past a threshold?</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>ROL Map</h2>
+            <p>Please excuse the quality...</p>
+            <img src="assets/rol.png" alt="ROL Map" class="full">
+        </div>
+
+        <div class="card">
+            <h2>Primary Research Tracker</h2>
+            <iframe class="embed" src="https://docs.google.com/spreadsheets/d/1drwEI3ZLTxOCcEpsn3-a5ngGoecL48YomzyngJSExOg/preview"></iframe>
+            <a href="https://docs.google.com/spreadsheets/d/1drwEI3ZLTxOCcEpsn3-a5ngGoecL48YomzyngJSExOg/edit?usp=sharing" target="_blank" class="link-btn">
+                <img src="https://www.gstatic.com/images/icons/material/product/1x/sheets_32dp.png" alt="">Open in New Tab
+            </a>
+        </div>
+
+        <div class="card">
+            <h2>Metamoment</h2>
+            <img src="assets/metamoment.jpg" alt="Metamoment" class="full">
+        </div>
+
+        <div class="card">
+            <h2>Annotated Bibliography</h2>
+            <iframe class="embed" src="https://docs.google.com/document/d/1dZ5YGcfgz6KxCJwtfPUKOn-7R1XtG0OBxmQGCRJ_5OE/preview"></iframe>
+            <a href="https://drive.google.com/open?id=1dZ5YGcfgz6KxCJwtfPUKOn-7R1XtG0OBxmQGCRJ_5OE" target="_blank" class="link-btn">
+                <img src="https://www.gstatic.com/images/icons/material/product/1x/docs_32dp.png" alt="">Open in New Tab
+            </a>
+        </div>
+    </div>
+
+    <!-- DELIVER -->
+    <div id="deliver" class="page">
+
+        <div class="card">
+            <h2>Working Essential Question &amp; Feedback</h2>
+            <img src="assets/working-essential.png" alt="Working Essential" class="full">
+        </div>
+
+        <div class="card">
+            <h2>Review of Literature</h2>
+            <iframe class="embed" src="https://docs.google.com/document/d/1zysMurjranAH5QOAv7Ag2c5y8ly8sgOfeYu12xY2I5w/preview"></iframe>
+            <a href="https://docs.google.com/document/d/1zysMurjranAH5QOAv7Ag2c5y8ly8sgOfeYu12xY2I5w/edit?usp=sharing" target="_blank" class="link-btn">
+                <img src="https://www.gstatic.com/images/icons/material/product/1x/docs_32dp.png" alt="">Open in New Tab
+            </a>
+        </div>
+
+        <div class="card">
+            <h2>Midterm Presentation</h2>
+            <div class="video-wrap">
+                <iframe src="https://drive.google.com/file/d/1VAeeB-1NMxwEO1q63GSrMrDrFeXvO-83/preview" allow="autoplay"></iframe>
+            </div>
+            <a href="https://drive.google.com/file/d/1VAeeB-1NMxwEO1q63GSrMrDrFeXvO-83/view?usp=sharing" target="_blank" class="link-btn">
+                <img src="https://www.google.com/images/icons/product/drive-32.png" alt="">Open in New Tab
+            </a>
+        </div>
+
+        <div class="card">
+            <h2>Midterm Reflection</h2>
+            <iframe class="embed" src="https://docs.google.com/document/d/1x2aLv_usApODsqrPWtczuBoh4QQQawVJNnW25yGeETY/preview"></iframe>
+            <a href="https://docs.google.com/document/d/1x2aLv_usApODsqrPWtczuBoh4QQQawVJNnW25yGeETY/edit?usp=sharing" target="_blank" class="link-btn">
+                <img src="https://www.gstatic.com/images/icons/material/product/1x/docs_32dp.png" alt="">Open in New Tab
+            </a>
+        </div>
+    </div>
+
+</main>
+
+<footer><p>website coded from scratch with ❤️</p></footer>
+
+<script>
+    const titles = { home: "my project", discover: "discover", design: "design", deliver: "deliver" };
+    const validPages = Object.keys(titles);
+
+    function getPageFromHash() {
+        const hash = location.hash.replace('#', '');
+        return validPages.includes(hash) ? hash : 'home';
+    }
+
+    function go(id, pushState = true) {
+        if (!validPages.includes(id)) id = 'home';
+
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+        document.getElementById('btn-' + id).classList.add('active');
+        document.getElementById('hero-title').innerText = titles[id];
+
+        if (pushState) history.pushState({ page: id }, '', '#' + id);
+
+        document.title = (id === 'home' ? "Home" : titles[id].charAt(0).toUpperCase() + titles[id].slice(1)) + " — Tommy’s Capstone Project";
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    window.addEventListener('popstate', function(e) {
+        go(e.state?.page ?? getPageFromHash(), false);
+    });
+
+    (function() {
+        const initial = getPageFromHash();
+        history.replaceState({ page: initial }, '', '#' + initial);
+        go(initial, false);
+    })();
+</script>
+
+</body>
+</html>
