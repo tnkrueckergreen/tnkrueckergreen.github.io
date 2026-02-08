@@ -346,7 +346,7 @@
                     <p><strong>What:</strong> Bug/failure diagnosis, public trust; could diverge into new subfields in AI governance; or expose security vulnerabilities.</p>
                     <p><strong>Where:</strong> Globally — wherever AI is deployed in critical domains (healthcare, finance, government).</p>
                 </div>
-                <p>Do more “legible” or “transparent” models translate to safety? Or could this transparency create new risk — making it easier to exploit model weaknesses?</p>
+                <p>Do more “legible” or “transparent” models translate to safety? Or could this be a bad thing this transparency create new risk? For example, would a transparent AI make it easier exploitation of model weaknesses, which could be used by bad actors?</p>
                 <p>And if both are true, how can the pros and cons be balanced? Transparent for all, or just some people?</p>
             </div>
 
@@ -355,22 +355,23 @@
                 <div class="box">
                     <p><strong>Who:</strong> AI developers, safety researchers, policymakers, users</p>
                     <p><strong>What:</strong> Safety testing protocols; alignment training; certification standards for “aligned” models.</p>
-                    <p><strong>Where:</strong> Wherever frontier models are deployed, or wherever AI makes consequential decisions without perfect human oversight.</p>
+                    <p><strong>Where:</strong> Wherever frontier models are deployed, or wherever AI makes consequential decisions without perfect human oversight. For the latter, this is not the case right now but could be in the future.</p>
                 </div>
-                <p>Are current safety benchmarks enough or do “situationally aware” models find ways to circumvent them? I recently read about a model that passed safety tests — but researchers realized it seemed aware it was being tested, meaning it could have been faking alignment.</p>
+                <p>Are current safety benchmarks and audits enough or do “situationally aware” models find ways to circumvent them? I recently read about a new model released by Anthropic that passed their safety tests but the researchers realized it was seemingly aware that it was being tested, which meant it could have just been faking aligment. (Like how a test taker is on their best behavior because they know they are being evaluated). Is there a way to measure if they’re actually passing these tests and not faking their alignment?
+</p>
                 <p>What does “alignment” mean if models are rewarded for appearing aligned but secretly preserve their preferences?</p>
-                <p>How do we manage the gap between test-time performance and real-world, post-deployment behavior?</p>
+                <p>Do we need continue with current safety approaches (“red teaming” for example) or will there need to be changes?</p>
+                <p>What will happen to the current trust placed in RLHF and other alignment techniques?</p>
             </div>
 
             <div class="q-block">
-                <h3>How does scaling AI models, in size and domain, change their nature and detectability of their failures?</h3>
+                <h3>How does scaling AI models, in size and domain, change their nature and detectability of their failures and unexpected behaviors?</h3>
                 <div class="box">
                     <p><strong>Who:</strong> AI developers, safety researchers, policymakers, vulnerable individuals affected by AI harm.</p>
-                    <p><strong>What:</strong> Scaling laws (for performance and misbehavior), transparency or “microscope” tools for large models.</p>
+                    <p><strong>What:</strong> Scaling laws (both for performance and misbehavior), transparency or “microscope” tools for large models.</p>
                     <p><strong>Where:</strong> APIs, public-facing models, closed research environments, high-stakes deployment.</p>
                 </div>
-                <p>Is anomaly detection for weird behaviors scalable or does it break under complexity? Will these techniques become obsolete as complexity increases?</p>
-                <p>Are there “phase transitions” in risk or capability that make certain safety measures obsolete past a threshold?</p>
+                <p>Is anomaly detection for weird behaviors scalable? Or not as these models become more complex?</p>
             </div>
         </div>
 
