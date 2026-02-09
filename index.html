@@ -271,7 +271,7 @@
 <main>
 
     <!-- HOME -->
-    <div id="home" class="page active">
+    <div id="page-home" class="page active">
 
         <div class="card">
             <div class="bio-layout">
@@ -311,7 +311,7 @@
     </div>
 
     <!-- DISCOVER -->
-    <div id="discover" class="page">
+    <div id="page-discover" class="page">
 
         <div class="card">
             <h2>Presearch</h2>
@@ -329,7 +329,7 @@
     </div>
 
     <!-- DESIGN -->
-    <div id="design" class="page">
+    <div id="page-design" class="page">
 
         <div class="card">
             <h2>LEAP Map</h2>
@@ -404,7 +404,7 @@
     </div>
 
     <!-- DELIVER -->
-    <div id="deliver" class="page">
+    <div id="page-deliver" class="page">
 
         <div class="card">
             <h2>Working Essential Question &amp; Feedback</h2>
@@ -454,7 +454,7 @@
         if (!validPages.includes(id)) id = 'home';
 
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
+        document.getElementById('page-' + id).classList.add('active');
         document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
         document.getElementById('btn-' + id).classList.add('active');
         document.getElementById('hero-title').innerText = titles[id];
