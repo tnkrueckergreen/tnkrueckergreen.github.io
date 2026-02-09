@@ -19,7 +19,7 @@ a single-page site with four sections â€” home, discover, design, and deliver â€
 
 ## credits
 
-thank you claude for helping me with css flexbox, the entire js routing system, responsive design**, and `padding-bottom: 56.25%` (if you know you know)
+thank you claude for helping me with css flexbox, the entire js routing system, responsive design, and `padding-bottom: 56.25%` (if you know you know)
 
 ## status
 
