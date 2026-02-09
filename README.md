@@ -4,7 +4,7 @@
 
 my capstone website! i wanted something cleaner and more personal than my previous google site, so i built it from scratch.
 
-nothing fancy, but *simple*, *minimal*, and *clean*. and rounded corners for the win!
+nothing fancy, but it's *simple*, *minimal*, and *clean*. i tried to go with a pastel color scheme that felt calm and warm.
 
 ## about
 
@@ -19,7 +19,7 @@ a single-page site with four sections â€” home, discover, design, and deliver â€
 
 ## credits
 
-thank you to claude for helping me with **css flexbox**, **the entire js routing system**, **responsive design**, and `padding-bottom: 56.25%` (if you know you know)
+thank you claude for helping me with css flexbox, the entire js routing system, responsive design**, and `padding-bottom: 56.25%` (if you know you know)
 
 ## status
 
