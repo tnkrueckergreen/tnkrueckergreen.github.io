@@ -1,5 +1,7 @@
 # tommy's capstone project
 
+[check it out here](https://tnkrueckergreen.github.io/)
+
 my capstone website! i wanted something cleaner and more personal than my previous google site, so i built it from scratch.
 
 nothing fancy, but *simple*, *minimal*, and *clean*. and rounded corners for the win!
