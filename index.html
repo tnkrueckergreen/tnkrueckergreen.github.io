@@ -3,250 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tommy's Capstone Project</title>
+    <title>Tommy’s Capstone Project</title>
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Space+Mono:wght@400;700&family=Major+Mono+Display&display=swap" rel="stylesheet">
     <style>
         @font-face {
             font-family: 'tommySerif';
             src: url('assets/tommySerif.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
         }
+
         @font-face {
             font-family: 'tommySans';
             src: url('assets/tommySans.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        :root {
-            --cream: #F4E8D0;
-            --ink: #1a1a2e;
-            --hot-pink: #FF2E7E;
-            --cyan: #00D9C0;
-            --orange: #FF8534;
-            --yellow: #FFD23F;
-            --purple: #B57BFF;
-            --green: #7DDB6A;
-            --shadow-offset: 6px;
-        }
-
         body {
-            background: var(--cream);
-            background-image:
-                linear-gradient(var(--ink) 1px, transparent 1px),
-                linear-gradient(90deg, var(--ink) 1px, transparent 1px);
-            background-size: 32px 32px;
-            background-position: -1px -1px;
-            background-color: var(--cream);
-            color: var(--ink);
-            font-family: 'Space Mono', monospace;
-            line-height: 1.65;
-            min-height: 100vh;
-            position: relative;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background: var(--cream);
-            opacity: 0.85;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        /* Scanlines overlay */
-        body::after {
-            content: '';
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            background: repeating-linear-gradient(
-                0deg,
-                rgba(0,0,0,0.03) 0px,
-                rgba(0,0,0,0.03) 1px,
-                transparent 1px,
-                transparent 3px
-            );
-            z-index: 1000;
+            background: #F9F7F2;
+            color: #333;
+            font-family: 'tommySans', sans-serif;
+            line-height: 1.8;
         }
 
         h1, h2, h3 {
-            font-family: 'VT323', monospace;
-            font-weight: normal;
-            line-height: 1.1;
+            font-family: 'tommySerif', serif;
             margin-bottom: 1rem;
         }
 
-        /* === NAV === */
+        /* nav */
         nav {
-            background: var(--ink);
-            border-bottom: 4px solid var(--ink);
-            padding: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
             position: sticky;
             top: 0;
             z-index: 100;
-            display: flex;
-            justify-content: space-between;
-            align-items: stretch;
+            background: rgba(249, 247, 242, 0.98);
         }
 
         .logo {
-            font-family: 'VT323', monospace;
-            font-size: 1.8rem;
-            color: var(--yellow);
-            padding: 0.6rem 1.5rem;
+            font-family: 'tommySerif', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            letter-spacing: 1px;
-            user-select: none;
         }
 
-        .logo::before {
-            content: '▶';
-            color: var(--hot-pink);
-            animation: blink 1s steps(2) infinite;
-        }
-
-        @keyframes blink {
-            50% { opacity: 0; }
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 0;
-        }
+        .nav-links { display: flex; gap: 0.5rem; }
 
         nav button {
-            font-family: 'Space Mono', monospace;
+            font-family: 'tommySans', sans-serif;
             text-transform: uppercase;
-            font-size: 0.78rem;
+            font-size: 0.7rem;
             letter-spacing: 2px;
             font-weight: 700;
-            padding: 1rem 1.6rem;
+            padding: 0.7rem 1.3rem;
+            border-radius: 50px;
             border: none;
-            border-left: 2px solid #333;
-            background: var(--ink);
-            color: var(--cream);
+            background: transparent;
             cursor: pointer;
-            transition: all 0.1s;
-            position: relative;
         }
 
-        nav button:hover {
-            background: var(--hot-pink);
-            color: var(--cream);
-        }
+        nav button.active, nav button:hover { background: #EBE5DA; }
 
-        nav button.active {
-            background: var(--yellow);
-            color: var(--ink);
-        }
-
-        nav button.active::before {
-            content: '◆';
-            margin-right: 0.5rem;
-            color: var(--hot-pink);
-        }
-
-        /* === HERO (CRT TERMINAL) === */
+        /* hero */
         .hero {
-            margin: 2rem auto;
-            max-width: 950px;
-            padding: 0 1rem;
-        }
-
-        .hero-window {
-            background: var(--ink);
-            border: 4px solid var(--ink);
-            border-radius: 12px;
-            box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--ink);
-            overflow: hidden;
-            transform: translate(0, 0);
-        }
-
-        .hero-titlebar {
-            background: var(--hot-pink);
-            border-bottom: 4px solid var(--ink);
-            padding: 0.5rem 1rem;
+            height: 38vh;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            font-family: 'VT323', monospace;
-            color: var(--ink);
-            font-size: 1.1rem;
-        }
-
-        .hero-titlebar .dots {
-            display: flex;
-            gap: 6px;
-        }
-
-        .hero-titlebar .dot {
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            border: 2px solid var(--ink);
-        }
-
-        .hero-titlebar .dot:nth-child(1) { background: var(--orange); }
-        .hero-titlebar .dot:nth-child(2) { background: var(--yellow); }
-        .hero-titlebar .dot:nth-child(3) { background: var(--green); }
-
-        .hero-body {
-            padding: 2.5rem 2rem;
-            min-height: 220px;
-            display: flex;
-            flex-direction: column;
             justify-content: center;
-            background:
-                radial-gradient(ellipse at center, rgba(255,46,126,0.15) 0%, transparent 70%),
-                var(--ink);
-            position: relative;
-        }
-
-        .hero-body::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: repeating-linear-gradient(
-                0deg,
-                transparent 0,
-                transparent 2px,
-                rgba(255,255,255,0.03) 2px,
-                rgba(255,255,255,0.03) 4px
-            );
-            pointer-events: none;
-        }
-
-        .hero-prompt {
-            font-family: 'VT323', monospace;
-            color: var(--cyan);
-            font-size: 1.3rem;
-            margin-bottom: 0.8rem;
-            opacity: 0.8;
+            margin: 1rem 1rem 2.5rem;
+            border-radius: 30px;
+            background: #E08B6D;
         }
 
         .hero h1 {
-            font-family: 'VT323', monospace;
-            color: var(--yellow);
+            color: #fff;
             font-size: 5rem;
-            text-shadow: 4px 4px 0 var(--hot-pink);
-            letter-spacing: 2px;
         }
 
-        .hero h1::after {
-            content: '_';
-            color: var(--cyan);
-            animation: blink 1s steps(2) infinite;
-            margin-left: 8px;
-        }
-
-        /* === LAYOUT === */
+        /* layout */
         main {
             max-width: 950px;
             margin: 0 auto;
@@ -254,256 +94,107 @@
         }
 
         .page { display: none; }
-        .page.active { display: block; animation: bootIn 0.3s ease-out; }
+        .page.active { display: block; }
 
-        @keyframes bootIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* === WINDOW CARDS === */
+        /* card */
         .card {
-            background: #FFFCF0;
-            border: 4px solid var(--ink);
-            border-radius: 10px;
-            box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--ink);
+            background: #fff;
+            padding: 3rem;
             margin-bottom: 2.5rem;
-            overflow: hidden;
+            border-radius: 24px;
+            box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.05);
         }
 
-        .card-titlebar {
-            background: var(--cyan);
-            border-bottom: 4px solid var(--ink);
-            padding: 0.5rem 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-family: 'VT323', monospace;
-            font-size: 1.1rem;
-            color: var(--ink);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .card-titlebar .dots {
-            display: flex;
-            gap: 5px;
-        }
-
-        .card-titlebar .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            border: 2px solid var(--ink);
-            background: #FFFCF0;
-        }
-
-        .card-content {
-            padding: 2rem;
-        }
-
-        .card h2 {
-            font-size: 2.4rem;
-            color: var(--ink);
-            margin-bottom: 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-
-        .card h2::before {
-            content: '◢';
-            color: var(--hot-pink);
-        }
-
-        .card p {
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-        }
-
-        .card p:last-child { margin-bottom: 0; }
-
-        /* Vary titlebar colors for variety */
-        .card:nth-of-type(2n) .card-titlebar { background: var(--yellow); }
-        .card:nth-of-type(3n) .card-titlebar { background: var(--purple); color: var(--ink); }
-        .card:nth-of-type(4n) .card-titlebar { background: var(--green); }
-
-        /* === BIO === */
+        /* bio card flexbox layout */
         .bio-layout {
             display: flex;
             gap: 2rem;
             align-items: flex-start;
         }
 
-        .bio-text { flex: 1; min-width: 0; }
-
-        .bio-img-frame {
-            width: 280px;
-            flex-shrink: 0;
-            background: var(--hot-pink);
-            border: 4px solid var(--ink);
-            padding: 8px;
-            box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--ink);
-            transform: rotate(2deg);
+        .bio-text {
+            flex: 1;
+            min-width: 0;
         }
 
         .bio-img {
-            width: 100%;
-            display: block;
-            border: 3px solid var(--ink);
-            background: #fff;
+            width: 350px;
+            flex-shrink: 0;
+            align-self: stretch;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 5px solid #fff;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
         }
 
-        .bio-img-label {
-            font-family: 'VT323', monospace;
-            text-align: center;
-            color: var(--ink);
-            padding: 6px 0 2px;
-            font-size: 1.1rem;
-            text-transform: uppercase;
+        /* highlight boxes */
+        .highlight {
+            padding: 2.5rem;
+            border-radius: 24px;
+            margin-bottom: 2.5rem;
         }
 
-        .bio-tag {
+        .highlight .tag {
             display: inline-block;
-            background: var(--ink);
-            color: var(--yellow);
-            padding: 0.3rem 0.8rem;
-            font-family: 'VT323', monospace;
-            font-size: 1rem;
-            letter-spacing: 1px;
-            margin-bottom: 0.8rem;
+            padding: 0.4rem 1rem;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50px;
+            font-size: 0.65rem;
+            font-weight: 900;
             text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            font-family: 'tommySans', sans-serif;
+        }
+
+        .highlight h3 { font-size: 1.7rem; line-height: 1.35; }
+
+        /* bio title and greeting */
+        .bio-title {
+            display: block;
+            font-size: 0.65rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #A09585;
+            margin-bottom: 0.5rem;
+            font-family: 'tommySans', sans-serif;
         }
 
         .bio-greeting {
-            font-family: 'VT323', monospace;
-            font-size: 1.4rem;
-            color: var(--hot-pink);
+            font-weight: 300;
+            font-size: 0.95rem;
+            color: #777;
             margin-bottom: 1rem;
         }
 
-        .bio-text h2 {
-            font-size: 2.6rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .bio-text h2::before { display: none; }
-
-        /* === HIGHLIGHT BLOCKS === */
-        .highlight {
-            border: 4px solid var(--ink);
-            border-radius: 10px;
-            box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--ink);
-            margin-bottom: 2.5rem;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .highlight-inner {
-            padding: 2rem;
-        }
-
-        .highlight-stripe {
-            background: var(--ink);
-            color: var(--cream);
-            padding: 0.5rem 1rem;
-            font-family: 'VT323', monospace;
-            font-size: 1.2rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-
-        .highlight-stripe::before {
-            content: '※';
-            color: var(--yellow);
-        }
-
-        .highlight h3 {
-            font-size: 2rem;
-            line-height: 1.25;
-            color: var(--ink);
-        }
-
-        .highlight.eq { background: var(--purple); }
-        .highlight.rq { background: var(--orange); }
-
-        /* === TINTED BOX === */
+        /* tinted box */
         .box {
-            background: var(--ink);
-            color: var(--cream);
-            padding: 1.5rem;
-            border-radius: 6px;
-            margin-top: 1.2rem;
-            font-family: 'Space Mono', monospace;
-            font-size: 0.88rem;
-            border: 3px solid var(--ink);
-            position: relative;
-        }
-
-        .box::before {
-            content: '> METADATA';
-            position: absolute;
-            top: -12px;
-            left: 12px;
-            background: var(--yellow);
-            color: var(--ink);
-            padding: 0 8px;
-            font-family: 'VT323', monospace;
-            font-size: 0.95rem;
-            border: 2px solid var(--ink);
-            letter-spacing: 1px;
-        }
-
-        .box p { margin-bottom: 0.6rem; }
-        .box p:last-child { margin-bottom: 0; }
-        .box strong {
-            color: var(--cyan);
-            font-family: 'VT323', monospace;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-        }
-
-        /* === EMBEDS === */
-        .embed-frame {
+            background: #F4F1EA;
+            padding: 2rem;
+            border-radius: 16px;
             margin-top: 1.5rem;
-            border: 4px solid var(--ink);
-            border-radius: 6px;
-            box-shadow: 4px 4px 0 var(--ink);
-            background: var(--ink);
-            overflow: hidden;
         }
 
-        .embed-frame .frame-bar {
-            background: var(--ink);
-            padding: 0.3rem 0.8rem;
-            display: flex;
-            gap: 5px;
-            border-bottom: 2px solid var(--ink);
-        }
+        .box p { margin-bottom: 1rem; }
+        .box p:last-child { margin-bottom: 0; }
 
-        .embed-frame .frame-bar .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--cream);
-            opacity: 0.5;
-        }
-
+        /* embeds */
         .embed {
             width: 100%;
             height: 550px;
             border: none;
-            display: block;
-            background: #fff;
+            border-radius: 16px;
+            margin-top: 1.5rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
         }
 
         .video-wrap {
             position: relative;
             padding-bottom: 56.25%;
-            background: var(--ink);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
         }
 
         .video-wrap iframe {
@@ -515,173 +206,56 @@
 
         img.full {
             max-width: 100%;
-            display: block;
-            border: 4px solid var(--ink);
-            box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--ink);
+            border-radius: 16px;
             margin-top: 1.5rem;
-            border-radius: 4px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
         }
 
-        /* === BUTTONS === */
+        /* link button */
         .link-btn {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            padding: 0.7rem 1.4rem;
+            padding: 0.8rem 1.6rem;
             margin-top: 1.2rem;
-            border: 3px solid var(--ink);
-            background: var(--yellow);
-            color: var(--ink);
+            border-radius: 50px;
+            border: 1px solid #E0DBD2;
+            background: #fff;
+            color: #333;
             font-weight: 700;
             font-size: 0.85rem;
             text-decoration: none;
-            font-family: 'Space Mono', monospace;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 4px 4px 0 var(--ink);
-            transition: all 0.1s;
-            cursor: pointer;
+            font-family: 'tommySans', sans-serif;
         }
 
-        .link-btn:hover {
-            background: var(--hot-pink);
-            color: var(--cream);
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0 var(--ink);
-        }
+        .link-btn:hover { border-color: #8C7B6C; }
+        .link-btn img { width: 20px; height: 20px; }
 
-        .link-btn:active {
-            transform: translate(2px, 2px);
-            box-shadow: 1px 1px 0 var(--ink);
-        }
+        /* questions */
+        .q-block { margin-bottom: 4rem; }
+        .q-block:last-child { margin-bottom: 0; }
+        .q-block h3 { font-size: 1.6rem; line-height: 1.35; margin-bottom: 1.5rem; }
+        .q-block p { margin-top: 1rem; }
 
-        .link-btn img {
-            width: 18px;
-            height: 18px;
-            filter: brightness(0);
-        }
+        footer { text-align: center; padding: 3rem; opacity: 0.5; }
 
-        .link-btn::before {
-            content: '⇲';
-            font-size: 1rem;
-        }
-
-        /* === Q-BLOCKS === */
-        .q-block {
-            margin-bottom: 3rem;
-            padding-bottom: 3rem;
-            border-bottom: 2px dashed var(--ink);
-        }
-
-        .q-block:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
-        }
-
-        .q-block h3 {
-            font-size: 1.7rem;
-            line-height: 1.3;
-            color: var(--ink);
-            background: var(--yellow);
-            padding: 1rem 1.2rem;
-            border: 3px solid var(--ink);
-            border-radius: 6px;
-            margin-bottom: 1.2rem;
-            position: relative;
-        }
-
-        .q-block h3::before {
-            content: 'Q?';
-            position: absolute;
-            top: -16px;
-            right: -16px;
-            background: var(--hot-pink);
-            color: var(--cream);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 3px solid var(--ink);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'VT323', monospace;
-            font-size: 1.2rem;
-            transform: rotate(8deg);
-        }
-
-        .q-block p { margin-top: 0.8rem; }
-
-        /* === FOOTER === */
-        footer {
-            background: var(--ink);
-            color: var(--cream);
-            padding: 2rem;
-            text-align: center;
-            border-top: 4px solid var(--ink);
-            font-family: 'VT323', monospace;
-            font-size: 1.1rem;
-            margin-top: 2rem;
-        }
-
-        footer a {
-            color: var(--cyan);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            border-bottom: 1px dashed var(--cyan);
-        }
-
-        footer a:hover { color: var(--yellow); border-color: var(--yellow); }
-
-        /* status bar */
-        .status-bar {
-            background: var(--ink);
-            color: var(--green);
-            font-family: 'VT323', monospace;
-            font-size: 0.95rem;
-            padding: 0.3rem 1rem;
-            display: flex;
-            justify-content: space-between;
-            border-top: 2px solid var(--ink);
-            letter-spacing: 1px;
-        }
-
-        .status-bar .blink { animation: blink 1.2s steps(2) infinite; }
-
-        /* === MOBILE === */
+        /* mobile */
         @media (max-width: 768px) {
-            body { background-size: 24px 24px; }
-            nav { flex-direction: column; }
-            .logo { width: 100%; justify-content: center; padding: 0.6rem; }
-            .nav-links {
-                width: 100%;
-                display: grid;
-                grid-template-columns: repeat(4, 1fr);
-            }
-            nav button {
-                padding: 0.7rem 0.3rem;
-                font-size: 0.65rem;
-                letter-spacing: 1px;
-                border-left-width: 1px;
-            }
-            .hero h1 { font-size: 3rem; }
-            .hero-body { padding: 1.5rem 1rem; min-height: 160px; }
-            .card-content { padding: 1.5rem; }
-            .card h2 { font-size: 1.8rem; }
+            .hero { height: 32vh; }
+            .hero h1 { font-size: 4rem; }
+            .card { padding: 1.8rem; }
             .bio-layout { flex-direction: column-reverse; align-items: center; }
-            .bio-img-frame { width: 200px; transform: rotate(-2deg); }
-            .highlight h3 { font-size: 1.4rem; }
-            .q-block h3 { font-size: 1.2rem; }
-            .embed { height: 400px; }
+            .bio-img { width: 180px; align-self: auto; aspect-ratio: 3/4; }
+            nav { flex-direction: column; gap: 0.8rem; }
+            .nav-links { flex-wrap: nowrap; }
+            nav button { padding: 0.6rem 0.9rem; letter-spacing: 1px; }
         }
     </style>
 </head>
 <body>
 
 <nav>
-    <div class="logo" onclick="go('home')">TOMMY.OS</div>
+    <div class="logo" onclick="go('home')">tommy’s capstone</div>
     <div class="nav-links">
         <button id="btn-home" class="active" onclick="go('home')">Home</button>
         <button id="btn-discover" onclick="go('discover')">Discover</button>
@@ -691,26 +265,7 @@
 </nav>
 
 <div class="hero">
-    <div class="hero-window">
-        <div class="hero-titlebar">
-            <div class="dots">
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-            </div>
-            <span id="hero-path">~/capstone/home</span>
-            <span style="opacity:0.6;">[ NOW LOADING ]</span>
-        </div>
-        <div class="hero-body">
-            <div class="hero-prompt">> ./run capstone.exe</div>
-            <h1 id="hero-title">my project</h1>
-        </div>
-        <div class="status-bar">
-            <span>STATUS: <span style="color:var(--yellow);">ONLINE</span></span>
-            <span class="blink">● REC</span>
-            <span>v1.0.0</span>
-        </div>
-    </div>
+    <h1 id="hero-title">my project</h1>
 </div>
 
 <main>
@@ -719,68 +274,39 @@
     <div id="page-home" class="page active">
 
         <div class="card">
-            <div class="card-titlebar">
-                <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-                <span>about_me.txt</span>
-                <span style="opacity:0.6;">— □ ✕</span>
-            </div>
-            <div class="card-content">
-                <div class="bio-layout">
-                    <div class="bio-text">
-                        <span class="bio-tag">▸ User Profile</span>
-                        <h2>Tommy Kruecker-Green</h2>
-                        <p class="bio-greeting">// Hi! I'm Tommy.</p>
-                        <p>As a researcher, I am interested in science, especially in areas of biology - like bioengineering and computational biology. I already have experience with bio research as club leader and active member for BioBuilder club. This past year, our group tested a variety of enzymes that can digest PET plastic. Our work continues!</p>
-                        <br>
-                        <p>I also have an interest more generally in technology and how rapidly advancing technologies, like AI, can improve health outcomes and advance drug discovery. AI is also somewhat of a black box at the moment but there have already been efforts into mechanistic interpretability that interest me.</p>
-                    </div>
-                    <div class="bio-img-frame">
-                        <img src="assets/profile.png" alt="Tommy" class="bio-img">
-                        <div class="bio-img-label">— TOMMY.JPG —</div>
-                    </div>
+            <div class="bio-layout">
+                <div class="bio-text">
+                    <span class="bio-title">About the Researcher</span>
+                    <h2>Tommy Kruecker-Green</h2>
+                    <p class="bio-greeting">Hi! I’m Tommy.</p>
+                    <p>As a researcher, I am interested in science, especially in areas of biology - like bioengineering and computational biology. I already have experience with bio research as club leader and active member for BioBuilder club. This past year, our group tested a variety of enzymes that can digest PET plastic. Our work continues!</p>
+                    <br>
+                    <p>I also have an interest more generally in technology and how rapidly advancing technologies, like AI, can improve health outcomes and advance drug discovery. AI is also somewhat of a black box at the moment but there have already been efforts into mechanistic interpretability that interest me.</p>
                 </div>
+                <img src="assets/profile.png" alt="Tommy" class="bio-img">
             </div>
         </div>
 
-        <div class="highlight eq">
-            <div class="highlight-stripe">Essential_Question.qst</div>
-            <div class="highlight-inner">
-                <h3>To what extent are interpretability tools a viable way to detect and/or mitigate harmful AI behaviors?</h3>
-            </div>
+        <div class="highlight" style="background: #C8B8DA;">
+            <span class="tag" style="color: #6B5285;">Essential Question</span>
+            <h3 style="color: #3E2A55;">To what extent are interpretability tools a viable way to detect and/or mitigate harmful AI behaviors?</h3>
         </div>
 
-        <div class="highlight rq">
-            <div class="highlight-stripe">Research_Question.qst</div>
-            <div class="highlight-inner">
-                <h3>How does the effectiveness of feature steering in mitigating LLM bias, sycophancy, and dishonesty compare to traditional training-based alignment methods?</h3>
-            </div>
+        <div class="highlight" style="background: #F5CEAE;">
+            <span class="tag" style="color: #A0644A;">Driving / Research Question</span>
+            <h3 style="color: #5C3625;">How does the effectiveness of feature steering in mitigating LLM bias, sycophancy, and dishonesty compare to traditional training-based alignment methods?</h3>
         </div>
 
         <div class="card">
-            <div class="card-titlebar">
-                <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-                <span>project_overview.md</span>
-                <span style="opacity:0.6;">— □ ✕</span>
-            </div>
-            <div class="card-content">
-                <p>By researching new method of interpretabilities such as circuit tracing and feature analysis, I hope to learn about how the "mind" of an LLM works. What is internally activated before tokens are determined with finality? Understanding these complex mathematical decisions and activations have for a long time remained a black box to researchers. More lately, within the last two years, progress has been made. These new tools still aren't perfect by any means and there are so many unknowns, but they are the first step to ensuring a future of transparent AI. In addition to research, I will run my own experiments with tools that allow the discovery and modification of certain "features" that activate within an LLM, and hopefully gain insights about how certain features can be modified to better align with human values by toning down the strength of activations that relate to problematic behaviors such as covert bias and sycophancy.</p>
-            </div>
+            <p>By researching new method of interpretabilities such as circuit tracing and feature analysis, I hope to learn about how the “mind” of an LLM works. What is internally activated before tokens are determined with finality? Understanding these complex mathematical decisions and activations have for a long time remained a black box to researchers. More lately, within the last two years, progress has been made. These new tools still aren’t perfect by any means and there are so many unknowns, but they are the first step to ensuring a future of transparent AI. In addition to research, I will run my own experiments with tools that allow the discovery and modification of certain “features” that activate within an LLM, and hopefully gain insights about how certain features can be modified to better align with human values by toning down the strength of activations that relate to problematic behaviors such as covert bias and sycophancy.</p>
         </div>
 
         <div class="card">
-            <div class="card-titlebar">
-                <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-                <span>reflection.log</span>
-                <span style="opacity:0.6;">— □ ✕</span>
-            </div>
-            <div class="card-content">
-                <p>I learned that I have trouble with organizing myself. But failure is part of the solution to the problem. There are many instances looking back where failure could have been avoided had I made better choices and fostered better habits. I will use my ability to fail and recover in my own research by making a concerted effort to be organized, to set a timeline, and keep focused and on track. I will also ask for clarification when I need it and will not be afraid to ask a teacher for advice.</p>
-                <div class="embed-frame">
-                    <div class="frame-bar"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-                    <iframe class="embed" src="https://docs.google.com/document/d/11JSRDRpVCjsDTEGz0KoXUpbT0hlUNoER2GSGBpPngyg/preview"></iframe>
-                </div>
-                <a href="https://drive.google.com/open?id=11JSRDRpVCjsDTEGz0KoXUpbT0hlUNoER2GSGBpPngyg" target="_blank" class="link-btn">Open in New Tab</a>
-            </div>
+            <p>I learned that I have trouble with organizing myself. But failure is part of the solution to the problem. There are many instances looking back where failure could have been avoided had I made better choices and fostered better habits. I will use my ability to fail and recover in my own research by making a concerted effort to be organized, to set a timeline, and keep focused and on track. I will also ask for clarification when I need it and will not be afraid to ask a teacher for advice.</p>
+            <iframe class="embed" src="https://docs.google.com/document/d/11JSRDRpVCjsDTEGz0KoXUpbT0hlUNoER2GSGBpPngyg/preview"></iframe>
+            <a href="https://drive.google.com/open?id=11JSRDRpVCjsDTEGz0KoXUpbT0hlUNoER2GSGBpPngyg" target="_blank" class="link-btn">
+                <img src="assets/docs.svg" alt="">Open in New Tab
+            </a>
         </div>
     </div>
 
@@ -788,32 +314,17 @@
     <div id="page-discover" class="page">
 
         <div class="card">
-            <div class="card-titlebar">
-                <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-                <span>presearch.doc</span>
-                <span style="opacity:0.6;">— □ ✕</span>
-            </div>
-            <div class="card-content">
-                <h2>Presearch</h2>
-                <p>This is for exploring the initial concepts and gathering foundational knowledge. It took me quite a while!</p>
-                <div class="embed-frame">
-                    <div class="frame-bar"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-                    <iframe class="embed" src="https://docs.google.com/document/d/1iahyrV_-oRpclzeigln6lTSe8qqeamCE2t4HYFo5z7g/preview"></iframe>
-                </div>
-                <a href="https://docs.google.com/document/d/1iahyrV_-oRpclzeigln6lTSe8qqeamCE2t4HYFo5z7g/edit?tab=t.0" target="_blank" class="link-btn">Open in New Tab</a>
-            </div>
+            <h2>Presearch</h2>
+            <p>This is for exploring the initial concepts and gathering foundational knowledge. It took me quite a while!</p>
+            <iframe class="embed" src="https://docs.google.com/document/d/1iahyrV_-oRpclzeigln6lTSe8qqeamCE2t4HYFo5z7g/preview"></iframe>
+            <a href="https://docs.google.com/document/d/1iahyrV_-oRpclzeigln6lTSe8qqeamCE2t4HYFo5z7g/edit?tab=t.0" target="_blank" class="link-btn">
+                <img src="assets/docs.svg" alt="">Open in New Tab
+            </a>
         </div>
 
         <div class="card">
-            <div class="card-titlebar">
-                <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-                <span>mind_map.png</span>
-                <span style="opacity:0.6;">— □ ✕</span>
-            </div>
-            <div class="card-content">
-                <h2>Mind Map</h2>
-                <img src="assets/mind-map.png" alt="Mind Map" class="full">
-            </div>
+            <h2>Mind Map</h2>
+            <img src="assets/mind-map.png" alt="Mind Map" class="full">
         </div>
     </div>
 
@@ -821,117 +332,74 @@
     <div id="page-design" class="page">
 
         <div class="card">
-            <div class="card-titlebar">
-                <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-                <span>leap_map.png</span>
-                <span style="opacity:0.6;">— □ ✕</span>
+            <h2>LEAP Map</h2>
+            <img src="assets/leap.png" alt="LEAP Map" class="full">
+        </div>
+
+        <div class="card">
+            <h2>Rough &amp; Ugly Questions</h2>
+
+            <div class="q-block">
+                <h3>How does increasing transparency and interpretability in AI models shape the future of trustworthy AI deployment?</h3>
+                <div class="box">
+                    <p><strong>Who:</strong> AI developers, safety researchers, policymakers, users</p>
+                    <p><strong>What:</strong> Bug/failure diagnosis, public trust; could diverge into new subfields in AI governance; or expose security vulnerabilities.</p>
+                    <p><strong>Where:</strong> Globally — wherever AI is deployed in critical domains (healthcare, finance, government).</p>
+                </div>
+                <p>Do more “legible” or “transparent” models translate to safety? Or could this be a bad thing this transparency create new risk? For example, would a transparent AI make it easier exploitation of model weaknesses, which could be used by bad actors?</p>
+                <p>And if both are true, how can the pros and cons be balanced? Transparent for all, or just some people?</p>
             </div>
-            <div class="card-content">
-                <h2>LEAP Map</h2>
-                <img src="assets/leap.png" alt="LEAP Map" class="full">
+
+            <div class="q-block">
+                <h3>How do emergent behaviors and “strategic deception” in AI challenge current methods of safety testing/alignment?</h3>
+                <div class="box">
+                    <p><strong>Who:</strong> AI developers, safety researchers, policymakers, users</p>
+                    <p><strong>What:</strong> Safety testing protocols; alignment training; certification standards for “aligned” models.</p>
+                    <p><strong>Where:</strong> Wherever frontier models are deployed, or wherever AI makes consequential decisions without perfect human oversight. For the latter, this is not the case right now but could be in the future.</p>
+                </div>
+                <p>Are current safety benchmarks and audits enough or do “situationally aware” models find ways to circumvent them? I recently read about a new model released by Anthropic that passed their safety tests but the researchers realized it was seemingly aware that it was being tested, which meant it could have just been faking alignment. (Like how a test taker is on their best behavior because they know they are being evaluated). Is there a way to measure if they’re actually passing these tests and not faking their alignment?
+</p>
+                <p>What does “alignment” mean if models are rewarded for appearing aligned but secretly preserve their preferences?</p>
+                <p>Do we need continue with current safety approaches (“red teaming” for example) or will there need to be changes?</p>
+                <p>What will happen to the current trust placed in RLHF and other alignment techniques?</p>
+            </div>
+
+            <div class="q-block">
+                <h3>How does scaling AI models, in size and domain, change their nature and detectability of their failures and unexpected behaviors?</h3>
+                <div class="box">
+                    <p><strong>Who:</strong> AI developers, safety researchers, policymakers, vulnerable individuals affected by AI harm.</p>
+                    <p><strong>What:</strong> Scaling laws (both for performance and misbehavior), transparency or “microscope” tools for large models.</p>
+                    <p><strong>Where:</strong> APIs, public-facing models, closed research environments, high-stakes deployment.</p>
+                </div>
+                <p>Is detecting unexpected/problematic behaviors scalable? Or will these methods break as these models become more complex?</p>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-titlebar">
-                <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-                <span>rough_questions.txt</span>
-                <span style="opacity:0.6;">— □ ✕</span>
-            </div>
-            <div class="card-content">
-                <h2>Rough &amp; Ugly Questions</h2>
-
-                <div class="q-block">
-                    <h3>How does increasing transparency and interpretability in AI models shape the future of trustworthy AI deployment?</h3>
-                    <div class="box">
-                        <p><strong>Who:</strong> AI developers, safety researchers, policymakers, users</p>
-                        <p><strong>What:</strong> Bug/failure diagnosis, public trust; could diverge into new subfields in AI governance; or expose security vulnerabilities.</p>
-                        <p><strong>Where:</strong> Globally — wherever AI is deployed in critical domains (healthcare, finance, government).</p>
-                    </div>
-                    <p>Do more "legible" or "transparent" models translate to safety? Or could this be a bad thing this transparency create new risk? For example, would a transparent AI make it easier exploitation of model weaknesses, which could be used by bad actors?</p>
-                    <p>And if both are true, how can the pros and cons be balanced? Transparent for all, or just some people?</p>
-                </div>
-
-                <div class="q-block">
-                    <h3>How do emergent behaviors and "strategic deception" in AI challenge current methods of safety testing/alignment?</h3>
-                    <div class="box">
-                        <p><strong>Who:</strong> AI developers, safety researchers, policymakers, users</p>
-                        <p><strong>What:</strong> Safety testing protocols; alignment training; certification standards for "aligned" models.</p>
-                        <p><strong>Where:</strong> Wherever frontier models are deployed, or wherever AI makes consequential decisions without perfect human oversight. For the latter, this is not the case right now but could be in the future.</p>
-                    </div>
-                    <p>Are current safety benchmarks and audits enough or do "situationally aware" models find ways to circumvent them? I recently read about a new model released by Anthropic that passed their safety tests but the researchers realized it was seemingly aware that it was being tested, which meant it could have just been faking alignment. (Like how a test taker is on their best behavior because they know they are being evaluated). Is there a way to measure if they're actually passing these tests and not faking their alignment?</p>
-                    <p>What does "alignment" mean if models are rewarded for appearing aligned but secretly preserve their preferences?</p>
-                    <p>Do we need continue with current safety approaches ("red teaming" for example) or will there need to be changes?</p>
-                    <p>What will happen to the current trust placed in RLHF and other alignment techniques?</p>
-                </div>
-
-                <div class="q-block">
-                    <h3>How does scaling AI models, in size and domain, change their nature and detectability of their failures and unexpected behaviors?</h3>
-                    <div class="box">
-                        <p><strong>Who:</strong> AI developers, safety researchers, policymakers, vulnerable individuals affected by AI harm.</p>
-                        <p><strong>What:</strong> Scaling laws (both for performance and misbehavior), transparency or "microscope" tools for large models.</p>
-                        <p><strong>Where:</strong> APIs, public-facing models, closed research environments, high-stakes deployment.</p>
-                    </div>
-                    <p>Is detecting unexpected/problematic behaviors scalable? Or will these methods break as these models become more complex?</p>
-                </div>
-            </div>
+            <h2>ROL Map</h2>
+            <p>Please excuse the quality...</p>
+            <img src="assets/rol.png" alt="ROL Map" class="full">
         </div>
 
         <div class="card">
-            <div class="card-titlebar">
-                <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-                <span>rol_map.png</span>
-                <span style="opacity:0.6;">— □ ✕</span>
-            </div>
-            <div class="card-content">
-                <h2>ROL Map</h2>
-                <p>Please excuse the quality...</p>
-                <img src="assets/rol.png" alt="ROL Map" class="full">
-            </div>
+            <h2>Primary Research Tracker</h2>
+            <iframe class="embed" src="https://docs.google.com/spreadsheets/d/1drwEI3ZLTxOCcEpsn3-a5ngGoecL48YomzyngJSExOg/preview"></iframe>
+            <a href="https://docs.google.com/spreadsheets/d/1drwEI3ZLTxOCcEpsn3-a5ngGoecL48YomzyngJSExOg/edit?usp=sharing" target="_blank" class="link-btn">
+                <img src="assets/sheets.svg" alt="">Open in New Tab
+            </a>
         </div>
 
         <div class="card">
-            <div class="card-titlebar">
-                <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-                <span>research_tracker.xlsx</span>
-                <span style="opacity:0.6;">— □ ✕</span>
-            </div>
-            <div class="card-content">
-                <h2>Primary Research Tracker</h2>
-                <div class="embed-frame">
-                    <div class="frame-bar"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-                    <iframe class="embed" src="https://docs.google.com/spreadsheets/d/1drwEI3ZLTxOCcEpsn3-a5ngGoecL48YomzyngJSExOg/preview"></iframe>
-                </div>
-                <a href="https://docs.google.com/spreadsheets/d/1drwEI3ZLTxOCcEpsn3-a5ngGoecL48YomzyngJSExOg/edit?usp=sharing" target="_blank" class="link-btn">Open in New Tab</a>
-            </div>
+            <h2>Metamoment</h2>
+            <img src="assets/metamoment.jpg" alt="Metamoment" class="full">
         </div>
 
         <div class="card">
-            <div class="card-titlebar">
-                <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-                <span>metamoment.jpg</span>
-                <span style="opacity:0.6;">— □ ✕</span>
-            </div>
-            <div class="card-content">
-                <h2>Metamoment</h2>
-                <img src="assets/metamoment.jpg" alt="Metamoment" class="full">
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-titlebar">
-                <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-                <span>annotated_bib.doc</span>
-                <span style="opacity:0.6;">— □ ✕</span>
-            </div>
-            <div class="card-content">
-                <h2>Annotated Bibliography</h2>
-                <div class="embed-frame">
-                    <div class="frame-bar"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-                    <iframe class="embed" src="https://docs.google.com/document/d/1dZ5YGcfgz6KxCJwtfPUKOn-7R1XtG0OBxmQGCRJ_5OE/preview"></iframe>
-                </div>
-                <a href="https://drive.google.com/open?id=1dZ5YGcfgz6KxCJwtfPUKOn-7R1XtG0OBxmQGCRJ_5OE" target="_blank" class="link-btn">Open in New Tab</a>
-            </div>
+            <h2>Annotated Bibliography</h2>
+            <iframe class="embed" src="https://docs.google.com/document/d/1dZ5YGcfgz6KxCJwtfPUKOn-7R1XtG0OBxmQGCRJ_5OE/preview"></iframe>
+            <a href="https://drive.google.com/open?id=1dZ5YGcfgz6KxCJwtfPUKOn-7R1XtG0OBxmQGCRJ_5OE" target="_blank" class="link-btn">
+                <img src="assets/docs.svg" alt="">Open in New Tab
+            </a>
         </div>
     </div>
 
@@ -939,79 +407,48 @@
     <div id="page-deliver" class="page">
 
         <div class="card">
-            <div class="card-titlebar">
-                <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-                <span>working_eq.png</span>
-                <span style="opacity:0.6;">— □ ✕</span>
-            </div>
-            <div class="card-content">
-                <h2>Working Essential Question &amp; Feedback</h2>
-                <img src="assets/working-essential.png" alt="Working Essential" class="full">
-            </div>
+            <h2>Working Essential Question &amp; Feedback</h2>
+            <img src="assets/working-essential.png" alt="Working Essential" class="full">
         </div>
 
         <div class="card">
-            <div class="card-titlebar">
-                <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-                <span>review_of_lit.doc</span>
-                <span style="opacity:0.6;">— □ ✕</span>
-            </div>
-            <div class="card-content">
-                <h2>Review of Literature</h2>
-                <div class="embed-frame">
-                    <div class="frame-bar"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-                    <iframe class="embed" src="https://docs.google.com/document/d/1zysMurjranAH5QOAv7Ag2c5y8ly8sgOfeYu12xY2I5w/preview"></iframe>
-                </div>
-                <a href="https://docs.google.com/document/d/1zysMurjranAH5QOAv7Ag2c5y8ly8sgOfeYu12xY2I5w/edit?usp=sharing" target="_blank" class="link-btn">Open in New Tab</a>
-            </div>
+            <h2>Review of Literature</h2>
+            <iframe class="embed" src="https://docs.google.com/document/d/1zysMurjranAH5QOAv7Ag2c5y8ly8sgOfeYu12xY2I5w/preview"></iframe>
+            <a href="https://docs.google.com/document/d/1zysMurjranAH5QOAv7Ag2c5y8ly8sgOfeYu12xY2I5w/edit?usp=sharing" target="_blank" class="link-btn">
+                <img src="assets/docs.svg" alt="">Open in New Tab
+            </a>
         </div>
 
         <div class="card">
-            <div class="card-titlebar">
-                <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-                <span>midterm_pres.mp4</span>
-                <span style="opacity:0.6;">— □ ✕</span>
+            <h2>Midterm Presentation</h2>
+            <div class="video-wrap">
+                <iframe src="https://drive.google.com/file/d/1VAeeB-1NMxwEO1q63GSrMrDrFeXvO-83/preview" allow="autoplay"></iframe>
             </div>
-            <div class="card-content">
-                <h2>Midterm Presentation</h2>
-                <div class="embed-frame">
-                    <div class="frame-bar"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-                    <div class="video-wrap">
-                        <iframe src="https://drive.google.com/file/d/1VAeeB-1NMxwEO1q63GSrMrDrFeXvO-83/preview" allow="autoplay"></iframe>
-                    </div>
-                </div>
-                <a href="https://drive.google.com/file/d/1VAeeB-1NMxwEO1q63GSrMrDrFeXvO-83/view?usp=sharing" target="_blank" class="link-btn">Open in New Tab</a>
-            </div>
+            <a href="https://drive.google.com/file/d/1VAeeB-1NMxwEO1q63GSrMrDrFeXvO-83/view?usp=sharing" target="_blank" class="link-btn">
+                <img src="assets/drive.svg" alt="">Open in New Tab
+            </a>
         </div>
 
         <div class="card">
-            <div class="card-titlebar">
-                <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-                <span>midterm_reflection.doc</span>
-                <span style="opacity:0.6;">— □ ✕</span>
-            </div>
-            <div class="card-content">
-                <h2>Midterm Reflection</h2>
-                <div class="embed-frame">
-                    <div class="frame-bar"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-                    <iframe class="embed" src="https://docs.google.com/document/d/1x2aLv_usApODsqrPWtczuBoh4QQQawVJNnW25yGeETY/preview"></iframe>
-                </div>
-                <a href="https://docs.google.com/document/d/1x2aLv_usApODsqrPWtczuBoh4QQQawVJNnW25yGeETY/edit?usp=sharing" target="_blank" class="link-btn">Open in New Tab</a>
-            </div>
+            <h2>Midterm Reflection</h2>
+            <iframe class="embed" src="https://docs.google.com/document/d/1x2aLv_usApODsqrPWtczuBoh4QQQawVJNnW25yGeETY/preview"></iframe>
+            <a href="https://docs.google.com/document/d/1x2aLv_usApODsqrPWtczuBoh4QQQawVJNnW25yGeETY/edit?usp=sharing" target="_blank" class="link-btn">
+                <img src="assets/docs.svg" alt="">Open in New Tab
+            </a>
         </div>
     </div>
 
 </main>
 
-<footer>
-    <a href="https://github.com/tnkrueckergreen/tnkrueckergreen.github.io" target="_blank">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-        [ HAND-CODED FROM SCRATCH WITH ♥ ]
-    </a>
-</footer>
-
+<footer><a href="https://github.com/tnkrueckergreen/tnkrueckergreen.github.io" target="_blank" style="text-decoration: none; color: inherit; display: inline-flex; align-items: center; gap: 6px; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity=''"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>website coded from scratch with ❤️</a></footer>
 <script>
     const titles = { home: "my project", discover: "discover", design: "design", deliver: "deliver" };
+    const heroColors = {
+    home: "#E08B6D",
+    discover: "#7EA882",
+    design: "#9B8BB4",
+    deliver: "#6E9CB8"
+};
     const validPages = Object.keys(titles);
 
     function getPageFromHash() {
@@ -1027,11 +464,11 @@
         document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
         document.getElementById('btn-' + id).classList.add('active');
         document.getElementById('hero-title').innerText = titles[id];
-        document.getElementById('hero-path').innerText = '~/capstone/' + id;
+        document.querySelector('.hero').style.background = heroColors[id];
 
         if (pushState) history.pushState({ page: id }, '', '#' + id);
 
-        document.title = (id === 'home' ? "Home" : titles[id].charAt(0).toUpperCase() + titles[id].slice(1)) + " — Tommy's Capstone Project";
+        document.title = (id === 'home' ? "Home" : titles[id].charAt(0).toUpperCase() + titles[id].slice(1)) + " — Tommy’s Capstone Project";
 
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
